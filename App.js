@@ -1,5 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import { StyleSheet, Button, View } from "react-native";
+
+import { Navigator, Route } from "./src/Navigator";
 
 const Screen1 = ({ navigator }) => (
   <View style={[styles.screen, { backgroundColor: "#59C9A5" }]}>
@@ -27,7 +29,17 @@ const Screen3 = ({ navigator }) => (
   </View>
 );
 
-export default Screen1;
+export default class App extends Component {
+  render() {
+    return (
+      <Navigator>
+        <Route name="Screen1" component={Screen1} />
+        <Route name="Screen2" component={Screen2} />
+        <Route name="Screen3" component={Screen3} />
+      </Navigator>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   screen: {
