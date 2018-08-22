@@ -15,7 +15,7 @@ const buildSceneConfig = () => {
 };
 
 export class Navigator extends Component {
-  constructor(prop) {
+  constructor(props) {
     super(props);
 
     const sceneConfig = buildSceneConfig(props.children);
@@ -28,11 +28,14 @@ export class Navigator extends Component {
   }
 
   handlePush = sceneName => {
-    this.setState();
+    this.setState(state => ({
+      ...state,
+      stack: [...state.stack, state.sceneConfig[sceneName]]
+    }));
   };
 
   render() {
     const CurrentScene = this.state.stack[0].component;
-    return <CurrentScene />;
+    return <CurrentScene navigator={{ push: this.handlePush }} />;
   }
 }
