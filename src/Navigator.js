@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { View, StyleSheet } from "react-native";
 
 export const Route = () => null;
 
@@ -36,6 +37,19 @@ export class Navigator extends Component {
 
   render() {
     const CurrentScene = this.state.stack[0].component;
-    return <CurrentScene navigator={{ push: this.handlePush }} />;
+    return (
+      <View style={StyleSheet.container}>
+        {this.state.stack.map((scene, index) => {
+          const CurrentScene = scene.component;
+
+          return (
+            <CurrentScene
+              key={scene.key}
+              navigator={{ push: this.handlePush }}
+            />
+          );
+        })}
+      </View>
+    );
   }
 }
