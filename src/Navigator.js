@@ -3,11 +3,11 @@ import { View, StyleSheet } from "react-native";
 
 export const Route = () => null;
 
-const buildSceneConfig = () => {
+const buildSceneConfig = (children = []) => {
   const config = {};
 
   children.forEach(child => {
-    config[child.props.name] = {
+    config[child.props.me] = {
       key: child.props.name,
       component: child.props.component
     };
@@ -53,3 +53,10 @@ export class Navigator extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "row"
+  }
+});
